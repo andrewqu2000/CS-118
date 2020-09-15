@@ -1,0 +1,30 @@
+Name: Jingnong Qu
+Email: andrewqu2000@ucla.edu
+UCLA ID: 805126509
+
+High level design:
+The project builds a partially reliable server and client based on UDP. The server opens
+a socket and reads the file indicated by and transmitted from the client after a 
+connection has been established and finalizes it after everything is transmitted. On the
+other hand, the client opens up a file and establishes a connection with the server and
+sends the file to it. Finally, it requests to terminate the connection and finalizes it.
+The handling of packet loss is based on Selective Repeat, so the ack is non-cumulative
+accordingly.
+
+Problems:
+The major problem of the project is the scale. It is quite difficult to implement all
+functionalities all at once. Thus, I follow the TA's guidance by developing it step by
+step in order to ensure debugging is at least possible. 
+
+Another problem is the number of variables I introduced makes me hard to track all of 
+them in debugging. I did not come up with a particularly useful approach, but I just
+kept testing the project again and again and dived into the code really deep to figure
+out what's wrong.
+
+Finally, the Selective Repeat is hard to implement because it involves quite a number of 
+steps. I made this function happen by working step by step - ensuring each step works 
+before going to the next phase.
+
+Acknowledgements:
+The basic structure of UDP is in reference to https://www.geeksforgeeks.org/udp-server-client-implementation-c/
+Random number generation is in reference to https://www.geeksforgeeks.org/rand-and-srand-in-ccpp/

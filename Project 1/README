@@ -1,0 +1,41 @@
+Name: Jingnong Qu
+Email: andrewqu2000@ucla.edu
+UCLA ID: 805126509
+
+High level design:
+The program to drive the server only has one main function. Inside the function, we first
+initialize a socket for listening by setting up all the parameters. Then, we initialize
+the local listening socket address. Next, we bind the socket and the address and set the 
+socket to listen. We use an infinite loop to continuously accepting connections and 
+processing them. In the loop, the first to do is to accept the connection. Then, the HTTP 
+request is parsed to extract the requested file and its type. The information is used to 
+first prepare the header in the response and then open the requested file and send out.
+Finally, the message which includes both the header and the body is sent to the client via
+write.
+
+Problems:
+In this project, the first problem for me is that I have no idea where to start. I do not
+know which thing I should do first. Then, I went back to the TA's examples in the 
+discussion sections. I used it as a framework to start. I first built the code for making
+connections, and then I fill in the code with the specific task of this project: parsing
+HTTP requests and responds it accordingly.
+
+A small problem during development is that I am not sure about format of HTTP requests and
+responses as well as what to include in a response. For these problems, I read the 
+textbook to look at examples of HTTP requests and responses. I also found out exactly what
+to include in the response on Piazza.
+
+The final problem is that during testing, while I can always correctly receive text files,
+both txt and html, other formats always cause problems. After a deep thinking, I figured
+it is probably because I am concatenating header and body as if they are strings. It works
+for text files as they are strings, but other files might include '\0' not as the end. To
+solve this problem, I looked up online and decided to use memcpy to concatenate the header
+and the body. The problem is then solved.
+
+Acknowledgements:
+The code for socket programming is taken from the slides of Zhiyi Zhang's week two
+discussion (Page 5).
+The size of buffer for receiving messages is based on https://stackoverflow.com/questions/2659952/maximum-length-of-http-get-request.
+The syntax of switch statement is taken from https://www.geeksforgeeks.org/switch-statement-cc/.
+The format for file types in HTTP response is based on https://www.lifewire.com/file-extensions-and-mime-types-3469109 and https://www.developershome.com/wap/detection/detection.asp?page=httpHeaders.
+The method to concatenate the header and the body in the response is based on https://stackoverflow.com/questions/39599060/how-to-concatenate-two-strings-with-many-null-characters.
